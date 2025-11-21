@@ -1,18 +1,32 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
+import React, { useState } from "react";
+import ReactDOM from "react-dom/client";
+import "../styles/index.css";
 
-//Bootstrap
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap"
+function TrafficLight() {
+  const [color, setColor] = useState("null");
 
-// index.css'
-import '../styles/index.css'
+  return (
+    <div className="traffic-root">
+      <div className="traffic-light-pole"></div>
+      <div className="semaphore">
+        <div
+          className={`light red ${color === "red" ? "selected" : ""}`}
+          onClick={() => setColor("red")}
+        ></div>
 
-// components
-import Home from './components/Home';
+        <div
+          className={`light yellow ${color === "yellow" ? "selected" : ""}`}
+          onClick={() => setColor("yellow")}
+        ></div>
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <Home/>
-  </React.StrictMode>,
-)
+        <div
+          className={`light green ${color === "green" ? "selected" : ""}`}
+          onClick={() => setColor("green")}
+        ></div>
+      </div>
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.querySelector("#root"));
+root.render(<TrafficLight />);
